@@ -7,13 +7,15 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Sub Category</th>
+            <th>Description</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for product in products %}
@@ -21,6 +23,8 @@
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
+                <td>{{ product.subCategory.category }}</td>
+                <td>{{ product.subCategory }}</td>
                 <td>{{ product.description }}</td>
                 <td>
                     <a href="{{ path('product_show', {'id': product.id}) }}">show</a>

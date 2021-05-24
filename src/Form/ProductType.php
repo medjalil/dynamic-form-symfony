@@ -21,19 +21,19 @@ class ProductType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('description')
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'label' => 'Catégorie',
-                'placeholder' => 'Sélectionnez votre catégorie',
+                'label' => 'Category',
+                'placeholder' => 'Select your category',
                 'mapped' => false,
                 'required' => false,
             ])
             ->add('subCategory', ChoiceType::class, [
-                'placeholder' => 'Sous Catégorie (Choisir une catégorie)',
-                'label' => 'Sous Catégorie',
+                'placeholder' => 'Sub Category (Choice a category)',
+                'label' => 'Sub Category',
                 'required' => false
-            ]);
+            ])
+            ->add('description');
         $formModifier = function (FormInterface $form, Category $category = null) {
             $subCategory = null === $category ? [] : $category->getSubCategories();
 
@@ -42,9 +42,9 @@ class ProductType extends AbstractType
                 'choices' => $subCategory,
                 'required' => false,
                 'choice_label' => 'name',
-                'placeholder' => 'Sous Catégorie  (Choisir une catégorie)',
+                'placeholder' => 'Sub Category  (Choice a category)',
                 'attr' => ['class' => 'custom-select'],
-                'label' => 'Sous Catégories'
+                'label' => 'Sub Category'
             ]);
         };
 
@@ -55,7 +55,6 @@ class ProductType extends AbstractType
                 $formModifier($event->getForm()->getParent(), $category);
             }
         );
-
 
     }
 
